@@ -5,11 +5,19 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-      <App />
-);
 
+const startApp = ()=>{
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(
+            <App />
+      );
+      serviceWorkerRegistration.register()
+}
+
+if(window.cordova){
+      document.addEventListener("deviceready", startApp, false)
+}else{
+      startApp()
+}
 // serviceWorkerRegistration.unregister();
-serviceWorkerRegistration.register()
 // reportWebVitals();
